@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Details</title>
+</head>
+<body>
+
+    <!-- 產品資訊部分 -->
+    <div th:if="${product != null}">
+        <h1>Product Details</h1>
+
+        <div>
+            <p><strong>Product ID:</strong> <span th:text="${product.product_id}"></span></p>
+            <p><strong>Product Name:</strong> <span th:text="${product.product_name}"></span></p>
+            <p><strong>Category:</strong> <span th:text="${product.category}"></span></p>
+            <p><strong>Price:</strong> $<span th:text="${product.price}"></span></p>
+            <p><strong>Stock:</strong> <span th:text="${product.stock}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${product.description}"></span></p>
+            
+            <!-- 顯示產品圖片 -->
+            <p><strong>Image:</strong></p>
+            <img th:src="${product.image_url}" alt="Product Image" style="max-width: 300px; max-height: 300px;" />
+            
+            <!-- 顯示產品的創建日期和最後修改日期 -->
+            <p><strong>Created Date:</strong> <span th:text="${#dates.format(product.created_date, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+            <p><strong>Last Modified Date:</strong> <span th:text="${#dates.format(product.last_modified_date, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+        </div>
+    </div>
+
+    <!-- 若產品未找到，顯示錯誤訊息 -->
+    <div th:if="${product == null}">
+        <h1>Product Not Found</h1>
+        <p>We couldn't find the product you're looking for.</p>
+    </div>
+
+</body>
+</html>
